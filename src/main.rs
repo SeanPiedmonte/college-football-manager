@@ -1,5 +1,5 @@
 use std::fmt;
-use std::collections::HashMap;
+use rand::Rng;
 
 /*
 * Player is a struct looking to handle the creation of players for teams in
@@ -86,6 +86,7 @@ pub fn create_player(name: &'static str, pos: &'static str, num : i32, spd : i32
 */
 #[derive(Default, Copy, Clone)]
 pub struct Team {
+    id: i32,
     name: &'static str,
     mascot: &'static str,
     city: &'static str,
@@ -98,7 +99,8 @@ pub struct Team {
 * Create a generic team that has no qualities
 */
 pub fn create_teams() -> [Team; 10] {
-    let team1 = Team {
+    let team0 = Team {
+        id: 0,
         name: "Ironwood State",
         mascot: "Thunderhawks",
         city: "Ironwood Falls",
@@ -115,7 +117,8 @@ pub fn create_teams() -> [Team; 10] {
                 Player{name: "Quincy Starks", pos: "CB", num: 24, hgt: 73, wgt: 180, spd: 90, thr: 34, str: 67, cth: 70, blk: 41, tck: 65, cov: 88, prh: 45},
                 Player{name: "Lane Hollowell", pos: "CB", num: 29, hgt: 68, wgt: 203, spd: 87, thr: 31, str: 66, cth: 73, blk: 40, tck: 63, cov: 85, prh: 48}],
     };
-    let team2 = Team {
+    let team1 = Team {
+        id: 1,
         name: "Lakeview Maritime",
         mascot: "Tridents",
         city: "Lakeview Shores",
@@ -132,7 +135,8 @@ pub fn create_teams() -> [Team; 10] {
                 Player{name: "Jace Lowenthal", pos: "CB", num: 8, hgt: 73, wgt: 176, spd: 85, thr: 34, str: 65, cth: 69, blk: 41, tck: 61, cov: 80, prh: 42},
                 Player{name: "Shane Kealoha", pos: "CB", num: 29, hgt: 72, wgt: 191, spd: 88, thr: 33, str: 63, cth: 67, blk: 39, tck: 60, cov: 78, prh: 40}],
     };
-    let team3 = Team {
+    let team2 = Team {
+        id: 2,
         name: "Red Ridge Tech",
         mascot: "Vortex",
         city: "Red Ridge",
@@ -149,7 +153,8 @@ pub fn create_teams() -> [Team; 10] {
                 Player{name: "Kyrie Nesbit", pos: "CB", num: 3, hgt: 72, wgt: 178, spd: 91, thr: 35, str: 70, cth: 76, blk: 46, tck: 70, cov: 89, prh: 50},
                 Player{name: "Cruz Whitman", pos: "CB", num: 6, hgt: 71, wgt: 175, spd: 88, thr: 32, str: 68, cth: 67, blk: 42, tck: 68, cov: 87, prh: 52}],
     };
-    let team4 = Team {
+    let team3 = Team {
+        id: 3,
         name: "Praire Forge",
         mascot: "Miners",
         city: "Praire Forge",
@@ -166,7 +171,8 @@ pub fn create_teams() -> [Team; 10] {
                 Player{name: "Kyler Benson", pos: "CB", num: 23, hgt: 72, wgt: 193, spd: 87, thr: 33, str: 66, cth: 62, blk: 44, tck: 63, cov: 81, prh: 44},
                 Player{name: "Jalen Cross", pos: "CB", num: 19, hgt: 68, wgt: 185, spd: 89, thr: 34, str: 64, cth: 60, blk: 41, tck: 61, cov: 79, prh: 42}],
     };
-    let team5 = Team {
+    let team4 = Team {
+        id: 4,
         name: "Midland Covenant",
         mascot: "Crusaders",
         city: "Midland Springs",
@@ -183,7 +189,8 @@ pub fn create_teams() -> [Team; 10] {
                 Player{name: "Nolan DeWitt", pos: "CB", num: 1, hgt: 73, wgt: 194, spd: 84, thr: 32, str: 62, cth: 58, blk: 40, tck: 59, cov: 77, prh: 39},
                 Player{name: "Trent Solano", pos: "CB", num: 7, hgt: 72, wgt: 186, spd: 82, thr: 31, str: 60, cth: 56, blk: 38, tck: 58, cov: 74, prh: 38}],
     };
-    let team6 = Team {
+    let team5 = Team {
+        id: 5,
         name: "Northshore Institute",
         mascot: "Sabercats",
         city: "Northshore",
@@ -200,7 +207,8 @@ pub fn create_teams() -> [Team; 10] {
                 Player{name: "Da'Ron Silas", pos: "CB", num: 9, hgt: 69, wgt: 205, spd: 93, thr: 36, str: 72, cth: 74, blk: 50, tck: 74, cov: 91, prh: 56}, 
                 Player{name: "KJ Ramsey", pos: "CB", num: 1, hgt: 69, wgt: 177, spd: 91, thr: 35, str: 70, cth: 72, blk: 48, tck: 71, cov: 89, prh: 54}],
     };
-    let team7 = Team {
+    let team6 = Team {
+        id: 6,
         name: "Echo Valley",
         mascot: "Wranglers",
         city: "Echo Valley",
@@ -217,7 +225,8 @@ pub fn create_teams() -> [Team; 10] {
                 Player{name: "Jaire Wardell", pos: "CB", num: 20, hgt: 70, wgt: 204, spd: 80, thr: 29, str: 56, cth: 55, blk: 37, tck: 52, cov: 70, prh: 34},
                 Player{name: "Camdin Fox", pos: "CB", num: 6, hgt: 69, wgt: 190, spd: 78, thr: 29, str: 55, cth: 54, blk: 35, tck: 51, cov: 68, prh: 32}],
     };
-    let team8 = Team {
+    let team7 = Team {
+        id: 7,
         name: "Cobalt Hills",
         mascot: "Aviators",
         city: "Cobalt Hills",
@@ -234,7 +243,8 @@ pub fn create_teams() -> [Team; 10] {
                 Player{name: "Dorian Westfall", pos: "CB", num: 4, hgt: 73, wgt: 185, spd: 88, thr: 34, str: 67, cth: 69, blk: 46, tck: 66, cov: 85, prh: 48},
                 Player{name: "Marcus Devine", pos: "CB", num: 29, hgt: 72, wgt: 190, spd: 86, thr: 33, str: 65, cth: 67, blk: 44, tck: 64, cov: 83, prh: 47}],
     };
-    let team9 = Team {
+    let team8 = Team {
+        id: 8,
         name: "Frostpine University",
         mascot: "Yetis", 
         city: "Frostpine",
@@ -251,7 +261,8 @@ pub fn create_teams() -> [Team; 10] {
                 Player{name: "Isaiah Treadwell", pos: "CB", num: 3, hgt: 73, wgt: 180, spd: 78, thr: 28, str: 54, cth: 54, blk: 34, tck: 50, cov: 68, prh: 33},
                 Player{name: "Nickei Lawton", pos: "CB", num: 25, hgt: 74, wgt: 190, spd: 76, thr: 28, str: 53, cth: 52, blk: 33, tck: 49, cov: 66, prh: 32}],
     };
-    let team10 = Team {
+    let team9 = Team {
+        id: 9,
         name: "Western Bluffs",
         mascot: "Stormcallers",
         city: "Western Bluffs",
@@ -268,7 +279,7 @@ pub fn create_teams() -> [Team; 10] {
                 Player{name: "Jarius Harper", pos: "CB", num: 7, hgt: 70, wgt: 175, spd: 86, thr: 32, str: 61, cth: 68, blk: 42, tck: 60, cov: 80, prh: 44},
                 Player{name: "Silas Van Dorn", pos: "CB", num: 22, hgt: 74, wgt: 186, spd: 84, thr: 31, str: 60, cth: 66, blk: 41, tck: 58, cov: 78, prh: 42}],
     };
-    let teams = [team1, team2, team3, team4, team5, team6, team7, team8, team9, team10];
+    let teams = [team1, team2, team3, team4, team5, team6, team7, team8, team9, team0];
     teams 
 }
 
@@ -279,15 +290,44 @@ impl std::fmt::Display for Team {
     }
 }
 
-fn create_schedule(teams: [Team; 10]) -> HashMap<String, Vec<i32>> {
-    let mut schedule = HashMap::new();
-    schedule.insert("abr".to_string(), vec![0,1,2,3,4,5]);
+fn create_schedule() -> [[i32; 10]; 10] {
+    let mut schedule : [[i32; 10]; 10] = [[0; 10]; 10];
+    let num_teams = 10;
+    let mut rng = rand::rng();
+    let anchor = rng.random_range(0..10);
+    let mut team_ptr = 0;
+    for week in 0..9 {
+        if team_ptr == (anchor as i32) {
+            continue;
+        }
+        schedule[week][anchor] = team_ptr;
+        schedule[week][team_ptr as usize] = anchor as i32;
+        for i in 1..=4 {
+
+            if (team_ptr + i) * 2 >= num_teams /* || team_ptr * 2 >= num_teams*/ {
+                schedule[week][(team_ptr + i) as usize] = (team_ptr + i) / 2;
+                schedule[week][((team_ptr + i) / 2) as usize] = team_ptr + i;
+            } else {
+                schedule[week][(team_ptr + i) as usize] = (team_ptr + i) * 2;
+                schedule[week][((team_ptr + i) * 2) as usize] = team_ptr + i;
+            }
+        }
+        team_ptr += 1;
+    }
     schedule
 }
 
 fn main() {
     let teams = create_teams();
     let mut i = 0;
+    let schedule = create_schedule();
+    for e in schedule {
+        for elem in e {
+            println!("{i}: {elem}");
+        }
+        i += 1;
+    }
+    i = 0;
     for e in teams {
         println!("{i}: {e}");
         i+=1;
