@@ -294,26 +294,47 @@ fn create_schedule() -> [[i32; 10]; 10] {
     let mut schedule : [[i32; 10]; 10] = [[0; 10]; 10];
     let num_teams = 10;
     let mut rng = rand::rng();
-    let anchor = rng.random_range(0..10);
-    let mut team_ptr = 0;
-    for week in 0..9 {
-        if team_ptr == (anchor as i32) {
-            continue;
+    //let anchor = rng.random_range(0..10);
+    let anchor = 0;
+    let mut team_ptr = anchor + 1;
+    println!("{anchor}");
+    println!("{team_ptr}");
+    let week = 0;
+    //for week in 0..9 {
+        //if team_ptr == (anchor as i32) {
+        //    continue;
+        //} 
+        if team_ptr == 10 {
+            team_ptr = 0;
         }
-        schedule[week][anchor] = team_ptr;
-        schedule[week][team_ptr as usize] = anchor as i32;
-        for i in 1..=4 {
-
-            if (team_ptr + i) * 2 >= num_teams /* || team_ptr * 2 >= num_teams*/ {
-                schedule[week][(team_ptr + i) as usize] = (team_ptr + i) / 2;
-                schedule[week][((team_ptr + i) / 2) as usize] = team_ptr + i;
-            } else {
-                schedule[week][(team_ptr + i) as usize] = (team_ptr + i) * 2;
-                schedule[week][((team_ptr + i) * 2) as usize] = team_ptr + i;
+        schedule[anchor as usize][week] = team_ptr;
+        schedule[team_ptr as usize][week] = anchor as i32;
+        let mut ptr1 = team_ptr + 1;
+        let mut ptr2 = team_ptr - 1;
+        for i in 0..5 {
+            if ptr1 >= 10 {
+                ptr1 = ptr1 - 10;
             }
+            if ptr1 == anchor {
+                ptr1 = if (anchor == 9) { 0 } else {ptr1 + 1};
+            }
+            if ptr2 <= -1 {
+                ptr2 = 10 + ptr2;
+                //println!("hit under 0: {ptr2}");
+            }
+            if ptr2 == anchor {
+                ptr2 = if anchor == 0 { 9 } else { ptr2 - 1 };
+                //println!("hit ptr2 == anchor: {ptr2}");
+            }
+            print!("ptr1: {ptr1}, ptr2: {ptr2} ");
+            schedule[ptr1 as usize][week] = ptr2;    
+            schedule[ptr2 as usize][week] = ptr1;
+            ptr1 += i;
+            ptr2 -= i;
         }
+        println!("");
         team_ptr += 1;
-    }
+    //} 
     schedule
 }
 
@@ -322,9 +343,11 @@ fn main() {
     let mut i = 0;
     let schedule = create_schedule();
     for e in schedule {
+        print!("{i} ");
         for elem in e {
-            println!("{i}: {elem}");
+            print!("{elem}, ");
         }
+        println!("");
         i += 1;
     }
     i = 0;
