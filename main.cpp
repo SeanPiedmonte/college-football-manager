@@ -283,6 +283,8 @@ typedef int schedule[10][10];
 *
 * creates a 10 week schedule for 10 teams
 * and returns a 2d array pointer to the matchups
+* Utilizes a round robin algorithm to create the matchups with teams getting
+* a bye in the final week designated by -1
 */
 void create_schedule(schedule sch) {
     srand(time(0));
@@ -321,6 +323,9 @@ void create_schedule(schedule sch) {
             ptr2 -= 1;
         }
         team_ptr += 1;
+    }
+    for (int i = 0; i < 10; i++) {
+        sch[i][9] = -1;
     }
     for (int i = 0; i < 10; i++) {
         printf("%d: ", i);
