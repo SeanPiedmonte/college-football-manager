@@ -87,15 +87,10 @@ struct Player *create_base_roster() {
 * Creates a player with all of the parameters needed to create a valid player
 * struct. Use to append players to rosters.
 */
-struct Player *create_player(string name, string pos, int num, int hgt, int wgt,
+void create_player(struct Player *new_player, string name, string pos, int num, int hgt, int wgt,
                              int spd, int thr, int str, int blk, int cth, int tck, 
                              int cov, int prh) 
 {
-    struct Player *new_player = (struct Player *)malloc(sizeof(struct Player));
-    if (new_player == NULL) {
-        error_message("func::create_player, could not allocate new_player");
-        return NULL;
-    }
     new_player->name = name;
     new_player->pos = pos;
     new_player->hgt = hgt;
@@ -109,8 +104,6 @@ struct Player *create_player(string name, string pos, int num, int hgt, int wgt,
     new_player->cov = cov;
     new_player->prh = prh;
     new_player->blk = blk;
-
-    return new_player;
 }
 
 /*
@@ -144,24 +137,20 @@ struct Team {
 *
 * creates a generic set of teams
 */
-struct Team *create_teams() {
-    struct Team *teams = (struct Team *)malloc(sizeof(struct Team) * 10);
-    if (teams == NULL) {
-        error_message("func::create_teams, could not allocate the teams array");
-        return NULL;
-    }
+void create_teams(Team *teams) {
     struct Team team0 = {0, "Ironwood State", "ThunderHawks", "Ironwood Falls",
-                         "MT", 7, {}};
-    team0.roster[0] = {"Colt Masters", "QB", 12, 74, 228, 78, 92, 72, 65, 58, 35, 30, 25};
-    team0.roster[1] = {"DeShawn Rucker", "RB", 25, 70, 210, 91, 45, 68, 79, 62, 38, 25, 25};
-    team0.roster[2] = {"Wyatt Hagan", "WR", 87, 71, 207, 89, 42, 60, 85, 45, 30, 28, 18};
-    team0.roster[3] = {"Boone Callahan", "OL", 70, 80, 335, 60, 30, 88, 50, 90, 40, 22, 20};
-    team0.roster[4] = {"Eli Tupuola", "OL", 74, 78, 315, 58, 28, 92, 47, 91, 42, 20, 22};
-    team0.roster[5] = {"Trent Moore", "DL", 91, 77, 274, 72, 30, 90, 35, 40, 87, 55, 89};
-    team0.roster[6] = {"Jalen Bass", "DL", 96, 73, 307, 74, 33, 85, 40, 42, 84, 52, 86};
-    team0.roster[7] = {"Tyrese Vann", "LB", 52, 72, 244, 82, 35, 75, 65, 48, 78, 72, 75};
-    team0.roster[8] = {"Quincy Starks", "CB", 24, 73, 180, 90, 34, 67, 70, 41, 65, 88, 45};
-    team0.roster[9] = {"Lane Hollowell", "CB", 29, 68, 203, 87, 31, 66, 73, 40, 63, 85, 48};
+                         "MT", 7, {
+            {"Colt Masters", "QB", 12, 74, 228, 78, 92, 72, 65, 58, 35, 30, 25},
+            {"DeShawn Rucker", "RB", 25, 70, 210, 91, 45, 68, 79, 62, 38, 25, 25},
+            {"Wyatt Hagan", "WR", 87, 71, 207, 89, 42, 60, 85, 45, 30, 28, 18},
+            {"Boone Callahan", "OL", 70, 80, 335, 60, 30, 88, 50, 90, 40, 22, 20},
+            {"Eli Tupuola", "OL", 74, 78, 315, 58, 28, 92, 47, 91, 42, 20, 22},
+            {"Trent Moore", "DL", 91, 77, 274, 72, 30, 90, 35, 40, 87, 55, 89},
+            {"Jalen Bass", "DL", 96, 73, 307, 74, 33, 85, 40, 42, 84, 52, 86},
+            {"Tyrese Vann", "LB", 52, 72, 244, 82, 35, 75, 65, 48, 78, 72, 75},
+            {"Quincy Starks", "CB", 24, 73, 180, 90, 34, 67, 70, 41, 65, 88, 45},
+            {"Lane Hollowell", "CB", 29, 68, 203, 87, 31, 66, 73, 40, 63, 85, 48},
+        }};
     
     teams[0] = team0;
     struct Team team1 {1, "Lakeview Maritime", "Tridents", "Lakeview Shores", 
@@ -282,8 +271,6 @@ struct Team *create_teams() {
     team9.roster[8] = {"Jarius Harper", "CB", 7, 70, 175, 86, 32, 61, 68, 42, 60, 80, 44};
     team9.roster[9] = {"Silas Van Dorn", "CB", 22, 74, 186, 84, 31, 60, 66, 41, 58, 78, 42};
     teams[9] = team9;
-
-    return teams;
 }
 
 typedef int schedule[10][10];
@@ -297,15 +284,59 @@ typedef int schedule[10][10];
 * creates a 10 week schedule for 10 teams
 * and returns a 2d array pointer to the matchups
 */
-schedule *create_schedule() {
-    // to do
-    return NULL;
+void create_schedule(schedule sch) {
+    srand(time(0));
+    int anchor = rand() % 10;
+    int team_ptr = anchor + 1;
+    printf("anchor: %d, team_ptr: %d\n", anchor, team_ptr);
+    if (team_ptr == 10)
+    {
+        team_ptr = 0;
+    }
+    for (int week = 0; week < 10 && team_ptr != anchor; week++) {
+        if (team_ptr == 10) {
+            team_ptr = 0 == anchor ? 1 : 0;
+        }
+        sch[anchor][week] = team_ptr;
+        sch[team_ptr][week] = anchor;
+        printf("team_ptr: %d\n", team_ptr);
+        int ptr1 = team_ptr + 1 > 9 ? 0 : team_ptr + 1;
+        int ptr2 = team_ptr - 1 < 0 ? 9 : team_ptr - 1;
+        for (int tm = 0; tm < 5; tm++) {
+            if (ptr1 == anchor) {
+                ptr1 += 1;
+            }
+            if (ptr1 >= 10) {
+                ptr1 -= 10;
+            }
+            if (ptr2 == anchor) {
+                ptr2 -= 1;
+            }
+            if (ptr2 < 0) {
+                ptr2 += 10;
+            }
+            sch[ptr1][week] = ptr2;
+            sch[ptr2][week] = ptr1;
+            ptr1 += 1;
+            ptr2 -= 1;
+        }
+        team_ptr += 1;
+    }
+    for (int i = 0; i < 10; i++) {
+        printf("%d: ", i);
+        for (int j = 0; j < 10; j++) {
+            printf("%d, ", sch[i][j]);
+        }
+        printf("\n");
+    } 
 }
 
 int main(void) {
-    struct Team *teams = create_teams();
-
-    for (int j = 0; j < 10; j++) {
+    struct Team teams[10] = {0}; 
+    create_teams(teams);
+    schedule sch = {0};
+    create_schedule(sch);
+    /*for (int j = 0; j < 10; j++) {
         cout << "city: " << teams[j].city << ", ";
         cout << "id: " << teams[j].id << ", ";
         cout << "mascot: " << teams[j].mascot << ", ";
@@ -313,7 +344,7 @@ int main(void) {
         cout << "state: " << teams[j].state << ", ";
         cout << "prestige " << teams[j].prestige << endl;
         for (int i = 0; i < 10; i++) {
-            cout << "name: " << teams[j].roster[i].name << ", ";
+            cout << teams[j].roster[i].name << ", ";
             cout << "pos: " << teams[j].roster[i].pos << ", ";
             cout << "hgt: " << teams[j].roster[i].hgt << ", ";
             cout << "wgt: " << teams[j].roster[i].wgt << ", ";
@@ -326,5 +357,5 @@ int main(void) {
             cout << "cov: " << teams[j].roster[i].cov << ", ";
             cout << "prh: " << teams[j].roster[i].prh << endl;
         }
-    }
+    }*/
 }
