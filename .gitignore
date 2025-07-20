@@ -1,1 +1,8 @@
-/target
+# Ignore all
+*
+
+# Unignore all with extensions
+!*.*
+*.o
+# Unignore all directories
+!*/
