@@ -57,6 +57,7 @@ cur.execute(create_roster_stmt)
     
 team_data = [
     (0, "Ironwood State", "ThunderHawks", "Ironwood Falls","MT", 7),
+    (1, "Lakeview Maritime", "Tridents", "Lakeview Shores", "ME", 5),
     (2, "Red Ridge Tech", "Vortex", "Red Ridge", "NV", 8),
     (3, "Praire Forge", "Miners", "Praire Forge", "KS", 6),
     (4, "Midland Covenant", "Crusaders", "Midland Springs", "IN", 4),
@@ -67,7 +68,7 @@ team_data = [
     (9, "Western Bluffs", "Stormcallers", "Western Bluffs", "OR", 6),
 ]
 
-cur.executemany("INSERT INTO teams VALUES(?,?,?,?,?,?)", team_data)
+cur.executemany("INSERT OR IGNORE INTO teams VALUES(?,?,?,?,?,?)", team_data)
 db.commit()
 
 true = 1
@@ -81,11 +82,17 @@ for line in ironwoodcsv:
     player_id+=1
     tup_list.append(tuple(line))
 
-cur.executemany("""INSERT INTO players(playerid, name, number, position, 
+cur.executemany("""INSERT OR IGNORE INTO players(playerid, name, number, position, 
                        star_rating, year, redshirt, height, weight, speed,
                        throwing_power, throwing_accuracy, catching, blocking, 
                        pass_rush, block_shedding, tackling, coverage, strength, 
                        football_iq, ball_carrier_vision, carrying, dev_trait, 
                        dealbreaker, hometown, homestate) 
                        VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", tup_list)
+db.commit()
+
+cur.execute("""UPDATE players
+               SET position = "EDGE"
+               WHERE position = "DE"
+            """)
 db.commit()

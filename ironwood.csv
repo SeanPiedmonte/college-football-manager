@@ -51,14 +51,14 @@ Joseph Brown,96,DT,3,3,1,74,319,60,60,60,60,60,59,64,68,60,98,60,60,46,3,scheme 
 Jonathan Thompson,98,DT,2,3,0,73,291,75,36,48,59,60,45,68,66,60,70,60,60,56,4,nil opportunities,Franklin,PA
 Eric Thomas,91,DT,3,0,0,76,262,83,52,52,47,52,54,73,57,52,75,52,52,52,4,team tradition,Ashland,TX
 Thomas Taylor,92,DT,3,0,1,74,288,86,52,52,52,52,53,74,57,52,74,48,52,52,0,team tradition,Springfield,IL
-Christopher Taylor,92,DE,4,1,1,73,253,69,55,55,55,55,90,82,96,55,55,55,55,55,3,academic prestige,Franklin,PA
-Jonathan Miller,98,DE,4,3,1,73,267,70,60,60,60,60,98,98,98,60,60,60,60,60,2,coach prestige,Riverside,FL
-Anthony Moore,96,DE,2,3,0,76,261,69,60,58,49,60,76,66,64,60,60,60,60,60,2,distance to home,Clinton,FL
-Justin Williams,93,DE,3,0,1,75,252,61,52,52,52,52,73,75,78,52,52,52,45,40,2,academic prestige,Arlington,CA
-Joshua Thompson,91,DE,2,0,1,74,253,50,52,48,52,52,61,55,56,49,52,52,52,38,4,playing time,Springfield,NY
-Daniel Williams,97,DE,3,3,0,77,262,66,60,60,60,60,94,94,91,60,60,48,60,60,4,academic prestige,Riverside,CA
-Jonathan Jones,94,DE,2,0,0,76,242,51,52,52,52,43,65,68,78,52,52,43,52,35,4,playing time,Clinton,NY
-Andrew Smith,99,DE,3,3,1,73,280,72,60,60,60,60,85,76,83,60,60,60,60,60,3,team prestige,Franklin,TX
+Christopher Taylor,92,EDGE,4,1,1,73,253,69,55,55,55,55,90,82,96,55,55,55,55,55,3,academic prestige,Franklin,PA
+Jonathan Miller,98,EDGE,4,3,1,73,267,70,60,60,60,60,98,98,98,60,60,60,60,60,2,coach prestige,Riverside,FL
+Anthony Moore,96,EDGE,2,3,0,76,261,69,60,58,49,60,76,66,64,60,60,60,60,60,2,distance to home,Clinton,FL
+Justin Williams,93,EDGE,3,0,1,75,252,61,52,52,52,52,73,75,78,52,52,52,45,40,2,academic prestige,Arlington,CA
+Joshua Thompson,91,EDGE,2,0,1,74,253,50,52,48,52,52,61,55,56,49,52,52,52,38,4,playing time,Springfield,NY
+Daniel Williams,97,EDGE,3,3,0,77,262,66,60,60,60,60,94,94,91,60,60,48,60,60,4,academic prestige,Riverside,CA
+Jonathan Jones,94,EDGE,2,0,0,76,242,51,52,52,52,43,65,68,78,52,52,43,52,35,4,playing time,Clinton,NY
+Andrew Smith,99,EDGE,3,3,1,73,280,72,60,60,60,60,85,76,83,60,60,60,60,60,3,team prestige,Franklin,TX
 Matthew Davis,44,OLB,2,1,0,73,247,94,55,55,47,55,44,55,71,47,51,55,55,55,0,academic prestige,Franklin,NY
 David Rodriguez,59,OLB,2,3,0,76,231,95,52,60,51,60,60,58,63,60,60,57,50,60,2,playing time,Madison,MI
 David Moore,56,OLB,3,2,0,77,233,97,58,55,78,58,58,58,85,58,58,58,58,58,0,distance to home,Franklin,CA
