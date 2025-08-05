@@ -17,17 +17,17 @@ def loop_stat_list(stats, std_devs, size):
 ####### QB STATS SECTION #######
 five_qb_stats_list   = [74,205,83,60,90,85,50,50,50,50,50,50,75,50,50,10,10]
 five_qb_std_dev_list = [5,5,5,5,5,10,5,5,5,5,5,5,10,5,5,1,1]
-qb_size = 5
+qb_size = 7
 five_qb_list = loop_stat_list(five_qb_stats_list, five_qb_std_dev_list, qb_size) 
-print(five_qb_list)
+#print(five_qb_list)
 ################################
 
 ####### HB STATS SECTION #######
 five_hb_stats_list   = [71,205,92,65,50,50,70,60,50,50,50,50,60,80,80,10,10]
 five_hb_std_dev_list = [5,5,5,8,5,5,5,5,5,5,5,5,10,10,10,1,1]
-hb_size = 10
+hb_size = 15
 five_hb_list = loop_stat_list(five_hb_stats_list, five_hb_std_dev_list, hb_size) 
-#print(five_hb_list)
+print(five_hb_list)
 ################################
 
 ####### WR STATS SECTION #######
@@ -76,7 +76,7 @@ five_dt_list = loop_stat_list(five_dt_stats_list, five_dt_std_dev_list, dt_size)
 ####### EDGE STATS SECTION #######
 five_edge_stats_list   = [75,275,80,80,50,50,50,55,85,80,80,60,65,50,50,10,10]
 five_edge_std_dev_list = [6,4,10,5,5,5,5,5,5,5,5,5,5,5,5,1,1]
-edge_size = 20
+edge_size = 22
 five_edge_list = loop_stat_list(five_edge_stats_list, five_edge_std_dev_list, edge_size) 
 #print(five_edge_list)
 ################################
@@ -84,7 +84,7 @@ five_edge_list = loop_stat_list(five_edge_stats_list, five_edge_std_dev_list, ed
 ####### LB STATS SECTION #######
 five_lb_stats_list   = [72,225,85,70,50,50,60,55,65,75,85,65,75,50,50,10,10]
 five_lb_std_dev_list = [4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,1,1]
-lb_size = 25
+lb_size = 15
 five_lb_list = loop_stat_list(five_lb_stats_list, five_lb_std_dev_list, lb_size) 
 #print(five_lb_list)
 ################################
@@ -92,7 +92,7 @@ five_lb_list = loop_stat_list(five_lb_stats_list, five_lb_std_dev_list, lb_size)
 ####### CB STATS SECTION #######
 five_cb_stats_list   = [70,195,90,50,50,50,65,45,45,45,50,85,55,50,50,10,10]
 five_cb_std_dev_list = [4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,1,1]
-cb_size = 25
+cb_size = 20
 five_cb_list = loop_stat_list(five_cb_stats_list, five_cb_std_dev_list, cb_size) 
 #print(five_cb_list)
 ################################
@@ -100,7 +100,7 @@ five_cb_list = loop_stat_list(five_cb_stats_list, five_cb_std_dev_list, cb_size)
 ####### SAF STATS SECTION #######
 five_saf_stats_list   = [70,205,90,65,50,50,65,45,55,65,75,75,75,50,50,10,10]
 five_saf_std_dev_list = [4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,1,1]
-saf_size = 25
+saf_size = 8
 five_saf_list = loop_stat_list(five_saf_stats_list, five_saf_std_dev_list, saf_size)
 #print(five_saf_list)
 ################################
