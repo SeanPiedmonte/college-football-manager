@@ -4,322 +4,103 @@ def generate_stat_values(mean, std_dev, size):
     stats_values = np.random.normal(mean, std_dev, size)
     return stats_values
 
-five_qb_hgt_values = generate_stat_values(74, 5, 5)
-five_qb_wgt_values = generate_stat_values(205, 5, 5)
-five_qb_spd_values = generate_stat_values(83, 5, 5)
-five_qb_str_values = generate_stat_values(60, 5, 5)
-five_qb_tpr_values = generate_stat_values(90, 5, 5)
-five_qb_tha_values = generate_stat_values(85, 10, 5)
-five_qb_cth_values = generate_stat_values(50, 5, 5)
-five_qb_blk_values = generate_stat_values(50, 5, 5)
-five_qb_prh_values = generate_stat_values(50, 5, 5)
-five_qb_bks_values = generate_stat_values(50, 5, 5)
-five_qb_tck_values = generate_stat_values(50, 5, 5)
-five_qb_cov_values = generate_stat_values(50, 5, 5)
-five_qb_fiq_values = generate_stat_values(75, 10, 5)
-five_qb_bcv_values = generate_stat_values(50, 5, 5)
-five_qb_cry_values = generate_stat_values(50, 5, 5)
-five_qb_kpw_values = generate_stat_values(10, 5, 5)
-five_qb_kac_values = generate_stat_values(10, 5, 5)
+def loop_stat_list(stats, std_devs, size):
+    ret_list = []
+    i = 0
+    for s in stats:
+        ret_list.append(generate_stat_values(s, std_devs[i], size))
+        i+=1
+    ret_list_final = np.array(ret_list)
+    return ret_list_final
 
-five_qb_list = [five_qb_hgt_values, five_qb_wgt_values, five_qb_spd_values, five_qb_str_values, 
-                five_qb_tpr_values, five_qb_cth_values, five_qb_tha_values, five_qb_blk_values, 
-                five_qb_prh_values, five_qb_bks_values, five_qb_tck_values, five_qb_cov_values,
-                five_qb_fiq_values, five_qb_bcv_values, five_qb_cry_values, five_qb_kpw_values,
-                five_qb_kac_values]
-f_qb_final = np.array(five_qb_list)
+#hgt,wgt,spd,str,tpw,tha,cth,blk,prh,bks,tck,cov,fiq,bcv,cry,kpw,kac
+####### QB STATS SECTION #######
+five_qb_stats_list   = [74,205,83,60,90,85,50,50,50,50,50,50,75,50,50,10,10]
+five_qb_std_dev_list = [5,5,5,5,5,10,5,5,5,5,5,5,10,5,5,1,1]
+qb_size = 5
+five_qb_list = loop_stat_list(five_qb_stats_list, five_qb_std_dev_list, qb_size) 
+print(five_qb_list)
+################################
 
-print(f_qb_final)
+####### HB STATS SECTION #######
+five_hb_stats_list   = [71,205,92,65,50,50,70,60,50,50,50,50,60,80,80,10,10]
+five_hb_std_dev_list = [5,5,5,8,5,5,5,5,5,5,5,5,10,10,10,1,1]
+hb_size = 10
+five_hb_list = loop_stat_list(five_hb_stats_list, five_hb_std_dev_list, hb_size) 
+#print(five_hb_list)
+################################
 
-five_hb_hgt_values = generate_stat_values(71, 5, 10)
-five_hb_wgt_values = generate_stat_values(205, 5, 10)
-five_hb_spd_values = generate_stat_values(92, 5, 10)
-five_hb_str_values = generate_stat_values(65, 8, 10)
-five_hb_tpr_values = generate_stat_values(50, 5, 10)
-five_hb_tha_values = generate_stat_values(50, 5, 10)
-five_hb_cth_values = generate_stat_values(70, 5, 10)
-five_hb_blk_values = generate_stat_values(60, 5, 10)
-five_hb_prh_values = generate_stat_values(50, 5, 10)
-five_hb_bks_values = generate_stat_values(50, 5, 10)
-five_hb_tck_values = generate_stat_values(50, 5, 10)
-five_hb_cov_values = generate_stat_values(50, 5, 10)
-five_hb_fiq_values = generate_stat_values(60, 10, 10)
-five_hb_bcv_values = generate_stat_values(80, 10, 10)
-five_hb_cry_values = generate_stat_values(80, 10, 10)
-five_hb_kpw_values = generate_stat_values(10, 5, 5)
-five_hb_kac_values = generate_stat_values(10, 5, 5)
+####### WR STATS SECTION #######
+five_wr_stats_list   = [70,205,92,60,50,50,85,50,40,40,40,40,60,70,70,10,10]
+five_wr_std_dev_list = [8,5,5,5,5,5,5,5,5,5,5,5,10,8,8,1,1]
+wr_size = 20
+five_wr_list = loop_stat_list(five_wr_stats_list, five_wr_std_dev_list, wr_size) 
+#print(five_wr_list)
+################################
 
-five_hb_list = [five_hb_hgt_values, five_hb_wgt_values, five_hb_spd_values, five_hb_str_values, 
-                five_hb_tpr_values, five_hb_cth_values, five_hb_tha_values, five_hb_blk_values, 
-                five_hb_prh_values, five_hb_bks_values, five_hb_tck_values, five_hb_cov_values,
-                five_hb_fiq_values, five_hb_bcv_values, five_hb_cry_values, five_hb_kpw_values,
-                five_hb_kac_values]
-f_hb_final = np.array(five_hb_list)
+####### TE STATS SECTION #######
+five_te_stats_list   = [76,245,87,70,50,50,83,65,40,40,40,40,60,60,60,10,10]
+five_te_std_dev_list = [8,5,5,5,5,5,5,5,5,5,5,5,10,5,5,1,1]
+te_size = 8
+five_te_list = loop_stat_list(five_te_stats_list, five_te_std_dev_list, te_size) 
+#print(five_te_list)
+################################
 
-print(f_hb_final)
+####### OT STATS SECTION #######
+five_ot_stats_list   = [77,295,68,90,50,50,50,85,40,40,40,40,60,50,50,10,10]
+five_ot_std_dev_list = [8,5,5,5,5,5,5,5,5,5,5,5,10,5,5,1,1]
+ot_size = 15
+five_ot_list = loop_stat_list(five_ot_stats_list, five_ot_std_dev_list, ot_size) 
+#print(five_ot_list)
+################################
 
-five_wr_hgt_values = generate_stat_values(70, 8, 20)
-five_wr_wgt_values = generate_stat_values(205, 5, 20)
-five_wr_spd_values = generate_stat_values(92, 5, 20)
-five_wr_str_values = generate_stat_values(60, 5, 20)
-five_wr_tpr_values = generate_stat_values(50, 5, 20)
-five_wr_tha_values = generate_stat_values(50, 5, 20)
-five_wr_cth_values = generate_stat_values(85, 5, 20)
-five_wr_blk_values = generate_stat_values(50, 5, 20)
-five_wr_prh_values = generate_stat_values(40, 5, 20)
-five_wr_bks_values = generate_stat_values(40, 5, 20)
-five_wr_tck_values = generate_stat_values(40, 5, 20)
-five_wr_cov_values = generate_stat_values(40, 5, 20)
-five_wr_fiq_values = generate_stat_values(60, 10, 20)
-five_wr_bcv_values = generate_stat_values(70, 8, 20)
-five_wr_cry_values = generate_stat_values(70, 8, 20)
-five_wr_kpw_values = generate_stat_values(10, 5, 5)
-five_wr_kac_values = generate_stat_values(10, 5, 5)
+####### OG,C STATS SECTION #######
+five_og_stats_list   = [76,295,68,90,50,50,50,85,40,40,40,40,60,50,50,10,10]
+five_og_std_dev_list = [6,4,5,5,5,5,5,5,5,5,5,5,10,5,5,1,1]
+og_size = 10
+c_size = 5
+five_og_list = loop_stat_list(five_og_stats_list, five_te_std_dev_list, og_size) 
+five_c_list = loop_stat_list(five_og_stats_list, five_og_std_dev_list, c_size)
+#print(five_og_list)
+#print(five_c_list)
+################################
 
-five_wr_list = [five_wr_hgt_values, five_wr_wgt_values, five_wr_spd_values, five_wr_str_values, 
-                five_wr_tpr_values, five_wr_cth_values, five_wr_tha_values, five_wr_blk_values, 
-                five_wr_prh_values, five_wr_bks_values, five_wr_tck_values, five_wr_cov_values,
-                five_wr_fiq_values, five_wr_bcv_values, five_wr_cry_values, five_wr_kpw_values,
-                five_wr_kac_values]
-f_wr_final = np.array(five_wr_list)
+####### DT STATS SECTION #######
+five_dt_stats_list   = [75,295,68,90,50,50,50,55,80,85,75,40,65,50,50,10,10]
+five_dt_std_dev_list = [8,4,5,5,5,5,5,5,5,5,5,5,5,5,5,1,1]
+dt_size = 15
+five_dt_list = loop_stat_list(five_dt_stats_list, five_dt_std_dev_list, dt_size) 
+#print(five_dt_list)
+################################
 
-print(f_wr_final)
+####### EDGE STATS SECTION #######
+five_edge_stats_list   = [75,275,80,80,50,50,50,55,85,80,80,60,65,50,50,10,10]
+five_edge_std_dev_list = [6,4,10,5,5,5,5,5,5,5,5,5,5,5,5,1,1]
+edge_size = 20
+five_edge_list = loop_stat_list(five_edge_stats_list, five_edge_std_dev_list, edge_size) 
+#print(five_edge_list)
+################################
 
-five_te_hgt_values = generate_stat_values(76, 8, 8)
-five_te_wgt_values = generate_stat_values(245, 5, 8)
-five_te_spd_values = generate_stat_values(87, 5, 8)
-five_te_str_values = generate_stat_values(70, 5, 8)
-five_te_tpr_values = generate_stat_values(50, 5, 8)
-five_te_tha_values = generate_stat_values(50, 5, 8)
-five_te_cth_values = generate_stat_values(83, 5, 8)
-five_te_blk_values = generate_stat_values(65, 5, 8)
-five_te_prh_values = generate_stat_values(40, 5, 8)
-five_te_bks_values = generate_stat_values(40, 5, 8)
-five_te_tck_values = generate_stat_values(40, 5, 8)
-five_te_cov_values = generate_stat_values(40, 5, 8)
-five_te_fiq_values = generate_stat_values(60, 10, 8)
-five_te_bcv_values = generate_stat_values(60, 5, 8)
-five_te_cry_values = generate_stat_values(60, 5, 8)
-five_te_kpw_values = generate_stat_values(10, 5, 5)
-five_te_kac_values = generate_stat_values(10, 5, 5)
+####### LB STATS SECTION #######
+five_lb_stats_list   = [72,225,85,70,50,50,60,55,65,75,85,65,75,50,50,10,10]
+five_lb_std_dev_list = [4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,1,1]
+lb_size = 25
+five_lb_list = loop_stat_list(five_lb_stats_list, five_lb_std_dev_list, lb_size) 
+#print(five_lb_list)
+################################
 
-five_te_list = [five_te_hgt_values, five_te_wgt_values, five_te_spd_values, five_te_str_values, 
-                five_te_tpr_values, five_te_cth_values, five_te_tha_values, five_te_blk_values, 
-                five_te_prh_values, five_te_bks_values, five_te_tck_values, five_te_cov_values,
-                five_te_fiq_values, five_te_bcv_values, five_te_cry_values, five_te_kpw_values,
-                five_te_kac_values]
-f_te_final = np.array(five_te_list)
+####### CB STATS SECTION #######
+five_cb_stats_list   = [70,195,90,50,50,50,65,45,45,45,50,85,55,50,50,10,10]
+five_cb_std_dev_list = [4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,1,1]
+cb_size = 25
+five_cb_list = loop_stat_list(five_cb_stats_list, five_cb_std_dev_list, cb_size) 
+#print(five_cb_list)
+################################
 
-print(f_te_final)
-
-five_ot_hgt_values = generate_stat_values(77, 8, 15)
-five_ot_wgt_values = generate_stat_values(295, 5, 15)
-five_ot_spd_values = generate_stat_values(68, 5, 15)
-five_ot_str_values = generate_stat_values(90, 5, 15)
-five_ot_tpr_values = generate_stat_values(50, 5, 15)
-five_ot_tha_values = generate_stat_values(50, 5, 15)
-five_ot_cth_values = generate_stat_values(50, 5, 15)
-five_ot_blk_values = generate_stat_values(85, 5, 15)
-five_ot_prh_values = generate_stat_values(40, 5, 15)
-five_ot_bks_values = generate_stat_values(40, 5, 15)
-five_ot_tck_values = generate_stat_values(40, 5, 15)
-five_ot_cov_values = generate_stat_values(40, 5, 15)
-five_ot_fiq_values = generate_stat_values(60, 10, 15)
-five_ot_bcv_values = generate_stat_values(50, 5, 15)
-five_ot_cry_values = generate_stat_values(50, 5, 15)
-five_ot_kpw_values = generate_stat_values(10, 5, 5)
-five_ot_kac_values = generate_stat_values(10, 5, 5)
-
-five_ot_list = [five_ot_hgt_values, five_ot_wgt_values, five_ot_spd_values, five_ot_str_values, 
-                five_ot_tpr_values, five_ot_cth_values, five_ot_tha_values, five_ot_blk_values, 
-                five_ot_prh_values, five_ot_bks_values, five_ot_tck_values, five_ot_cov_values,
-                five_ot_fiq_values, five_ot_bcv_values, five_ot_cry_values, five_ot_kpw_values,
-                five_ot_kac_values]
-f_ot_final = np.array(five_ot_list)
-
-print(f_ot_final)
-
-five_og_hgt_values = generate_stat_values(76, 6, 10)
-five_og_wgt_values = generate_stat_values(295, 4, 10)
-five_og_spd_values = generate_stat_values(68, 5, 10)
-five_og_str_values = generate_stat_values(90, 5, 10)
-five_og_tpr_values = generate_stat_values(50, 5, 10)
-five_og_tha_values = generate_stat_values(50, 5, 10)
-five_og_cth_values = generate_stat_values(50, 5, 10)
-five_og_blk_values = generate_stat_values(85, 5, 10)
-five_og_prh_values = generate_stat_values(40, 5, 10)
-five_og_bks_values = generate_stat_values(40, 5, 10)
-five_og_tck_values = generate_stat_values(40, 5, 10)
-five_og_cov_values = generate_stat_values(40, 5, 10)
-five_og_fiq_values = generate_stat_values(60, 10, 10)
-five_og_bcv_values = generate_stat_values(50, 5, 10)
-five_og_cry_values = generate_stat_values(50, 5, 10)
-five_og_kpw_values = generate_stat_values(10, 5, 5)
-five_og_kac_values = generate_stat_values(10, 5, 5)
-
-five_og_list = [five_og_hgt_values, five_og_wgt_values, five_og_spd_values, five_og_str_values, 
-                five_og_tpr_values, five_og_cth_values, five_og_tha_values, five_og_blk_values, 
-                five_og_prh_values, five_og_bks_values, five_og_tck_values, five_og_cov_values,
-                five_og_fiq_values, five_og_bcv_values, five_og_cry_values, five_og_kpw_values,
-                five_og_kac_values]
-f_og_final = np.array(five_og_list)
-
-print(f_og_final)
-
-five_c_hgt_values = generate_stat_values(76, 6, 5)
-five_c_wgt_values = generate_stat_values(295, 4, 5)
-five_c_spd_values = generate_stat_values(68, 5, 5)
-five_c_str_values = generate_stat_values(90, 5, 5)
-five_c_tpr_values = generate_stat_values(50, 5, 5)
-five_c_tha_values = generate_stat_values(50, 5, 5)
-five_c_cth_values = generate_stat_values(50, 5, 5)
-five_c_blk_values = generate_stat_values(85, 5, 5)
-five_c_prh_values = generate_stat_values(40, 5, 5)
-five_c_bks_values = generate_stat_values(40, 5, 5)
-five_c_tck_values = generate_stat_values(40, 5, 5)
-five_c_cov_values = generate_stat_values(40, 5, 5)
-five_c_fiq_values = generate_stat_values(60, 10, 5)
-five_c_bcv_values = generate_stat_values(50, 5, 5)
-five_c_cry_values = generate_stat_values(50, 5, 5)
-five_c_kpw_values = generate_stat_values(10, 5, 5)
-five_c_kac_values = generate_stat_values(10, 5, 5)
-
-five_c_list = [five_c_hgt_values, five_c_wgt_values, five_c_spd_values, five_c_str_values, 
-                five_c_tpr_values, five_c_cth_values, five_c_tha_values, five_c_blk_values, 
-                five_c_prh_values, five_c_bks_values, five_c_tck_values, five_c_cov_values,
-                five_c_fiq_values, five_c_bcv_values, five_c_cry_values, five_c_kpw_values,
-                five_c_kac_values]
-f_c_final = np.array(five_c_list)
-
-print(f_c_final)
-
-five_dt_hgt_values = generate_stat_values(75, 6, 5)
-five_dt_wgt_values = generate_stat_values(295, 4, 5)
-five_dt_spd_values = generate_stat_values(68, 5, 5)
-five_dt_str_values = generate_stat_values(90, 5, 5)
-five_dt_tpr_values = generate_stat_values(50, 5, 5)
-five_dt_tha_values = generate_stat_values(50, 5, 5)
-five_dt_cth_values = generate_stat_values(50, 5, 5)
-five_dt_blk_values = generate_stat_values(55, 5, 5)
-five_dt_prh_values = generate_stat_values(80, 5, 5)
-five_dt_bks_values = generate_stat_values(85, 5, 5)
-five_dt_tck_values = generate_stat_values(75, 5, 5)
-five_dt_cov_values = generate_stat_values(40, 5, 5)
-five_dt_fiq_values = generate_stat_values(65, 5, 5)
-five_dt_bcv_values = generate_stat_values(50, 5, 5)
-five_dt_cry_values = generate_stat_values(50, 5, 5)
-five_dt_kpw_values = generate_stat_values(10, 5, 5)
-five_dt_kac_values = generate_stat_values(10, 5, 5)
-
-five_dt_list = [five_dt_hgt_values, five_dt_wgt_values, five_dt_spd_values, five_dt_str_values, 
-                five_dt_tpr_values, five_dt_cth_values, five_dt_tha_values, five_dt_blk_values, 
-                five_dt_prh_values, five_dt_bks_values, five_dt_tck_values, five_dt_cov_values,
-                five_dt_fiq_values, five_dt_bcv_values, five_dt_cry_values, five_dt_kpw_values,
-                five_dt_kac_values]
-f_dt_final = np.array(five_dt_list)
-
-print(f_dt_final)
-
-five_edge_hgt_values = generate_stat_values(75, 6, 5)
-five_edge_wgt_values = generate_stat_values(295, 4, 5)
-five_edge_spd_values = generate_stat_values(80, 10, 5)
-five_edge_str_values = generate_stat_values(80, 5, 5)
-five_edge_tpr_values = generate_stat_values(50, 5, 5)
-five_edge_tha_values = generate_stat_values(50, 5, 5)
-five_edge_cth_values = generate_stat_values(50, 5, 5)
-five_edge_blk_values = generate_stat_values(55, 5, 5)
-five_edge_prh_values = generate_stat_values(85, 5, 5)
-five_edge_bks_values = generate_stat_values(80, 5, 5)
-five_edge_tck_values = generate_stat_values(80, 5, 5)
-five_edge_cov_values = generate_stat_values(60, 5, 5)
-five_edge_fiq_values = generate_stat_values(65, 5, 5)
-five_edge_bcv_values = generate_stat_values(50, 5, 5)
-five_edge_cry_values = generate_stat_values(50, 5, 5)
-five_edge_kpw_values = generate_stat_values(10, 5, 5)
-five_edge_kac_values = generate_stat_values(10, 5, 5)
-
-five_edge_list = [five_edge_hgt_values, five_edge_wgt_values, five_edge_spd_values, five_edge_str_values, 
-                five_edge_tpr_values, five_edge_cth_values, five_edge_tha_values, five_edge_blk_values, 
-                five_edge_prh_values, five_edge_bks_values, five_edge_tck_values, five_edge_cov_values,
-                five_edge_fiq_values, five_edge_bcv_values, five_edge_cry_values, five_edge_kpw_values,
-                five_edge_kac_values]
-f_edge_final = np.array(five_edge_list)
-
-print(f_edge_final)
-
-five_lb_hgt_values = generate_stat_values(72, 4, 5)
-five_lb_wgt_values = generate_stat_values(225, 4, 5)
-five_lb_spd_values = generate_stat_values(85, 5, 5)
-five_lb_str_values = generate_stat_values(70, 5, 5)
-five_lb_tpr_values = generate_stat_values(50, 5, 5)
-five_lb_tha_values = generate_stat_values(50, 5, 5)
-five_lb_cth_values = generate_stat_values(60, 5, 5)
-five_lb_blk_values = generate_stat_values(55, 5, 5)
-five_lb_prh_values = generate_stat_values(65, 5, 5)
-five_lb_bks_values = generate_stat_values(75, 5, 5)
-five_lb_tck_values = generate_stat_values(85, 5, 5)
-five_lb_cov_values = generate_stat_values(65, 5, 5)
-five_lb_fiq_values = generate_stat_values(75, 5, 5)
-five_lb_bcv_values = generate_stat_values(50, 5, 5)
-five_lb_cry_values = generate_stat_values(50, 5, 5)
-
-five_lb_list = [five_lb_hgt_values, five_lb_wgt_values, five_lb_spd_values, five_lb_str_values, 
-                five_lb_tpr_values, five_lb_cth_values, five_lb_tha_values, five_lb_blk_values, 
-                five_lb_prh_values, five_lb_bks_values, five_lb_tck_values, five_lb_cov_values,
-                five_lb_fiq_values, five_lb_bcv_values, five_lb_cry_values]
-f_lb_final = np.array(five_lb_list)
-
-print(f_lb_final)
-
-five_cb_hgt_values = generate_stat_values(70, 4, 5)
-five_cb_wgt_values = generate_stat_values(195, 4, 5)
-five_cb_spd_values = generate_stat_values(90, 5, 5)
-five_cb_str_values = generate_stat_values(50, 5, 5)
-five_cb_tpr_values = generate_stat_values(50, 5, 5)
-five_cb_tha_values = generate_stat_values(50, 5, 5)
-five_cb_cth_values = generate_stat_values(65, 5, 5)
-five_cb_blk_values = generate_stat_values(45, 5, 5)
-five_cb_prh_values = generate_stat_values(45, 5, 5)
-five_cb_bks_values = generate_stat_values(45, 5, 5)
-five_cb_tck_values = generate_stat_values(60, 5, 5)
-five_cb_cov_values = generate_stat_values(85, 5, 5)
-five_cb_fiq_values = generate_stat_values(65, 5, 5)
-five_cb_bcv_values = generate_stat_values(50, 5, 5)
-five_cb_cry_values = generate_stat_values(50, 5, 5)
-five_cb_kpw_values = generate_stat_values(10, 5, 5)
-five_cb_kac_values = generate_stat_values(10, 5, 5)
-
-five_cb_list = [five_cb_hgt_values, five_cb_wgt_values, five_cb_spd_values, five_cb_str_values, 
-                five_cb_tpr_values, five_cb_cth_values, five_cb_tha_values, five_cb_blk_values, 
-                five_cb_prh_values, five_cb_bks_values, five_cb_tck_values, five_cb_cov_values,
-                five_cb_fiq_values, five_cb_bcv_values, five_cb_cry_values, five_cb_kpw_values,
-                five_cb_kac_values]
-f_cb_final = np.array(five_cb_list)
-
-print(f_cb_final)
-
-five_saf_hgt_values = generate_stat_values(70, 4, 5)
-five_saf_wgt_values = generate_stat_values(205, 4, 5)
-five_saf_spd_values = generate_stat_values(90, 5, 5)
-five_saf_str_values = generate_stat_values(65, 5, 5)
-five_saf_tpr_values = generate_stat_values(50, 5, 5)
-five_saf_tha_values = generate_stat_values(50, 5, 5)
-five_saf_cth_values = generate_stat_values(65, 5, 5)
-five_saf_blk_values = generate_stat_values(45, 5, 5)
-five_saf_prh_values = generate_stat_values(55, 5, 5)
-five_saf_bks_values = generate_stat_values(65, 5, 5)
-five_saf_tck_values = generate_stat_values(75, 5, 5)
-five_saf_cov_values = generate_stat_values(75, 5, 5)
-five_saf_fiq_values = generate_stat_values(75, 5, 5)
-five_saf_bcv_values = generate_stat_values(50, 5, 5)
-five_saf_cry_values = generate_stat_values(50, 5, 5)
-five_saf_kpw_values = generate_stat_values(10, 5, 5)
-five_saf_kac_values = generate_stat_values(10, 5, 5)
-
-five_saf_list = [five_saf_hgt_values, five_saf_wgt_values, five_saf_spd_values, five_saf_str_values, 
-                five_saf_tpr_values, five_saf_cth_values, five_saf_tha_values, five_saf_blk_values, 
-                five_saf_prh_values, five_saf_bks_values, five_saf_tck_values, five_saf_cov_values,
-                five_saf_fiq_values, five_saf_bcv_values, five_saf_cry_values, five_saf_kpw_values,
-                five_saf_kac_values]
-f_saf_final = np.array(five_saf_list)
-
+####### SAF STATS SECTION #######
+five_saf_stats_list   = [70,205,90,65,50,50,65,45,55,65,75,75,75,50,50,10,10]
+five_saf_std_dev_list = [4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,1,1]
+saf_size = 25
+five_saf_list = loop_stat_list(five_saf_stats_list, five_saf_std_dev_list, saf_size)
+#print(five_saf_list)
+################################
