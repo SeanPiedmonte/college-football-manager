@@ -5,6 +5,7 @@
 #include "SDL_render.h"
 #include "SDL_video.h"
 #include "rosters.h"
+#include "schedule.h"
 
 using namespace std;
 
@@ -134,69 +135,6 @@ struct Team {
     struct Player roster[10];
 };
 
-typedef int schedule[10][10];
-/*
-* create_schedule
-*
-* parameters: None
-*
-* returns: schedule*
-*
-* creates a 10 week schedule for 10 teams
-* and returns a 2d array pointer to the matchups
-* Utilizes a round robin algorithm to create the matchups with teams getting
-* a bye in the final week designated by -1
-*/
-void create_schedule(schedule sch) {
-    srand(time(0));
-    int anchor = rand() % 10;
-    int team_ptr = anchor + 1;
-    printf("anchor: %d, team_ptr: %d\n", anchor, team_ptr);
-    if (team_ptr == 10)
-    {
-        team_ptr = 0;
-    }
-    for (int week = 0; week < 10 && team_ptr != anchor; week++) {
-        if (team_ptr == 10) {
-            team_ptr = 0 == anchor ? 1 : 0;
-        }
-        sch[anchor][week] = team_ptr;
-        sch[team_ptr][week] = anchor;
-        printf("team_ptr: %d\n", team_ptr);
-        int ptr1 = team_ptr + 1 > 9 ? 0 : team_ptr + 1;
-        int ptr2 = team_ptr - 1 < 0 ? 9 : team_ptr - 1;
-        for (int tm = 0; tm < 5; tm++) {
-            if (ptr1 == anchor) {
-                ptr1 += 1;
-            }
-            if (ptr1 >= 10) {
-                ptr1 -= 10;
-            }
-            if (ptr2 == anchor) {
-                ptr2 -= 1;
-            }
-            if (ptr2 < 0) {
-                ptr2 += 10;
-            }
-            sch[ptr1][week] = ptr2;
-            sch[ptr2][week] = ptr1;
-            ptr1 += 1;
-            ptr2 -= 1;
-        }
-        team_ptr += 1;
-    }
-    for (int i = 0; i < 10; i++) {
-        sch[i][9] = -1;
-    }
-    for (int i = 0; i < 10; i++) {
-        printf("%d: ", i);
-        for (int j = 0; j < 10; j++) {
-            printf("%d, ", sch[i][j]);
-        }
-        printf("\n");
-    } 
-}
-
 bool HandleEvent(SDL_Event *Event) {
     bool ShouldQuit = false;
     switch(Event->type) {
@@ -240,13 +178,7 @@ bool HandleEvent(SDL_Event *Event) {
 }
 
 int main(int argc, char *argv[]) {
-    //struct Team teams[10] = {0}; 
-    //schedule sch = {0};
-    //create_schedule(sch);
-    //SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "College Football Manager",
-    //                         "This is College Football Manager", 0);
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        // SDL didnt work
     }
     SDL_Window *Window;
     Window = SDL_CreateWindow("College Football Manager",
